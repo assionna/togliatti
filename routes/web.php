@@ -14,9 +14,12 @@ use \App\Http\Controllers\CheckProducts;
 |
 */
 
-Route::get('/', view());
-
 Route::get('/checks', CheckProducts::class);
+
+Route::get('/{any}', function () {
+    return view('index');
+})->where('any', '.*');
+
 
 
 
