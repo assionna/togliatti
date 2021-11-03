@@ -11,6 +11,10 @@ const router = new VueRouter ({
             name: "showTask",
             component: () => import('../components/pages/ShowTasks.vue'),
         },
+        {
+            path: "*",
+            component: () => import('../components/pages/PageNotFound.vue'),
+        }
     ]
 });
 

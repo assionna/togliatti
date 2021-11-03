@@ -2,7 +2,7 @@
 <b-form
     v-show="addDisabled"
 >
-    <b-card>
+    <b-card bg-variant="light" class="text-center">
         <b-row class="my-1"
             v-for="(value, key) in items" :key="key"
         >

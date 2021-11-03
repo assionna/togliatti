@@ -12,6 +12,6 @@ export default {
         return api.deleteTask(task);
     },
     changeTaskFromDB ({commit},{task}) {
-        return api.changeTask(task);
+        return api.saveTask(task);
     }
 }

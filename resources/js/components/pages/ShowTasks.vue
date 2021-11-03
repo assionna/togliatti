@@ -1,12 +1,33 @@
 <template>
-<div class="">
-
+<b-form>
     <b-container fluid>
+        <b-navbar>
+            <b-navbar-nav>
+                <b-nav-item
+                    @click="visibleAddTask=!visibleAddTask"
+                >
+                    <b-icon-plus-circle></b-icon-plus-circle>
+                    Добавить задачу
+                </b-nav-item>
+            </b-navbar-nav>
+        </b-navbar>
+
+        <add-task
+            v-show="visibleAddTask"
+        ></add-task>
+
+        <b-card bg-variant="light" class="text-center"
+            v-if="tasks == ''"
+        >
+            <b-card-text  variant="light">Нет задач</b-card-text>
+        </b-card>
+
         <b-table
             :items="tasks"
             :fields="fields"
             show-empty
             small
+            v-else
         >
             <template #cell(name)="row">
             {{ row.value }}
@@ -45,19 +66,20 @@
 
                     </b-row>
                      <b-button size="sm" @click="changeField(row.item)" class="mr-2">
-                        Сохранить изменения
+                        Сохранить
                     </b-button>
                 </b-card>
             </template>
 
         </b-table>
     </b-container>
-</div>
-
+</b-form>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import AddTask from '../templates/AddTask';
+
   export default {
     data() {
         return {
@@ -76,8 +98,11 @@ import { mapActions } from 'vuex'
                 comment: '',
                 status: '',
             },
+            visibleAddTask: false,
+
         }
     },
+    components:{ AddTask },
     computed: {
         sortOptions() {
         return this.fields

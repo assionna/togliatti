@@ -39,17 +39,6 @@ export default {
             store.delete(task.id);
         });
     },
-    async changeTask (task) {
-        let db = await this.getDB();
-        return new Promise(resolve => {
-            let trans = db.transaction([STORAGE_NAME], 'readwrite');
-            trans.oncomplete = () => {
-                resolve();
-            };
-            let store = trans.objectStore(STORAGE_NAME);
-            store.put(task);
-        });
-    },
     async getTasks () {
         let db = await this.getDB();
         return new Promise(resolve => {
